@@ -12,8 +12,8 @@ Concept: A person must collect seeds to plant flowers in pots scattered througho
 
 ## Clone
 
-When you clone a repo it will create a folder with repo's name One-Plus. It will have a .git file in it which will track any changes to the folder.  
-The unity files will be in `One-Plus\One Plus\`. **Leave this as is to prevent adding local settings to the repo.**  
+When you clone a repo it will create a folder with repo's name Plants. It will have a .git file in it which will track any changes to the folder.  
+The unity files will be in `Plants\Plants\`. **Leave this as is to prevent adding local settings to the repo.**  
 
 ## Branch
 
