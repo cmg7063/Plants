@@ -7,18 +7,21 @@ public class Player : MonoBehaviour {
     public float speed;
     public float rotateSpeed;
     bool wallCheck;
-    bool seedCheck;
+    int seedCount;
 
 	// Use this for initialization
 	void Start () {
         speed = 0.1f;
         rotateSpeed = 270f;
-        seedCheck = false;
+        seedCount = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Translate(0, speed, 0);
+        if (!wallCheck)
+        {
+            transform.Translate(0, speed, 0);
+        }
 
         if (Input.GetKey(KeyCode.LeftArrow))
             transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
@@ -29,17 +32,33 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Seed")
+        Vector3 direction = transform.InverseTransformPoint(collision.transform.position);
+        if (direction.y < 0f)
+        {
+            wallCheck = true;
+        } else
+        {
+            wallCheck = false;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        wallCheck = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Seed")
         {
             Destroy(collision.gameObject);
-            Debug.Log("test");
-            seedCheck = true;
+            seedCount++;
         }
 
-        if (collision.gameObject.tag == "Pot" && seedCheck == true)
+        if (collision.gameObject.tag == "Pot" && seedCount > 0)
         {
             collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-            seedCheck = false;
+            seedCount--;
         }
     }
 }

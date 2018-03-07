@@ -19,10 +19,6 @@ public class CameraFollow : MonoBehaviour {
     {
         transform.position = target.position + offset;
 
-        if (Input.GetKey(KeyCode.LeftArrow))
-            transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
-
-        if (Input.GetKey(KeyCode.RightArrow))
-            transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
+        transform.rotation = target.rotation;
     }
 }
