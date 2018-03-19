@@ -18,6 +18,9 @@ public class Player : MonoBehaviour {
 	float stunTime;
 	bool restrictRotation;
 
+    //touch stuff
+    private Vector2 touchOrigin;
+
 	// Use this for initialization
 	void Start () {
 		rigidBody = GetComponent<Rigidbody2D>();
@@ -27,7 +30,9 @@ public class Player : MonoBehaviour {
 		currentStun = 0.0f;
 		stunTime = 1.75f;
 		restrictRotation = false;
-	}
+
+        touchOrigin = -Vector2.one;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -38,7 +43,7 @@ public class Player : MonoBehaviour {
 
 	// move players if they are not stunned
 	private void updateMovement() {
-		if (currentStun < 0.0f) {
+        if (currentStun < 0.0f) {
 			transform.Translate (0, speed * Time.deltaTime, 0);
 		} else {
 			// push back player during the beginning of the stun
@@ -54,6 +59,8 @@ public class Player : MonoBehaviour {
 
 	// checks for user input
 	private void userInput() {
+
+#if UNITY_STANDALONE || WEBPLAYER
 		// rotate player counter clockwise
 		if (!restrictRotation) {
 			if (Input.GetKey (KeyCode.LeftArrow)) {
@@ -65,7 +72,25 @@ public class Player : MonoBehaviour {
 				transform.Rotate (Vector3.back, rotateSpeed * Time.deltaTime);
 			}
 		}
-	}
+#else
+        if(Input.touchCount > 0)
+        {
+            Touch tch = Input.touches[0];
+            if(tch.phase == TouchPhase.Began)
+            {
+                touchOrigin = tch.position;
+            }
+            else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+            {
+                Vector2 touchEnd = tch.position;
+                float xTouch = touchEnd.x - touchOrigin.x;
+                touchOrigin.x = -1;
+
+                transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime * xTouch);
+            }
+        }
+#endif
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
