@@ -20,6 +20,12 @@ public class Player : MonoBehaviour {
 
     //touch stuff
     private Vector2 touchOrigin;
+    private bool touched;
+
+    private float desiredRot;
+
+    public float rotSpeed = 250;
+    public float damping = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +38,9 @@ public class Player : MonoBehaviour {
 		restrictRotation = false;
 
         touchOrigin = -Vector2.one;
+        touched = false;
+
+        desiredRot = transform.eulerAngles.y;
     }
 	
 	// Update is called once per frame
@@ -76,18 +85,43 @@ public class Player : MonoBehaviour {
         if(Input.touchCount > 0)
         {
             Touch tch = Input.touches[0];
-            if(tch.phase == TouchPhase.Began)
+            /*if(tch.phase == TouchPhase.Began)
             {
                 touchOrigin = tch.position;
+                if(touchOrigin.x >= Screen.width/2)
+                {
+                    desiredRot -= rotSpeed * Time.deltaTime;
+                }
+                else
+                {
+                    desiredRot += rotSpeed * Time.deltaTime;
+                }
             }
-            else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+
+            Quaternion desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, desiredRot, transform.eulerAngles.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);*/
+
+            if(tch.phase == TouchPhase.Moved)
+            {
+                touchOrigin = tch.position;
+                if (touchOrigin.x >= Screen.width / 2)
+                {
+                    transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
+                }
+            }
+
+            /*else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
             {
                 Vector2 touchEnd = tch.position;
                 float xTouch = touchEnd.x - touchOrigin.x;
                 touchOrigin.x = -1;
 
-                transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime * xTouch);
-            }
+                transform.Rotate(Vector3.back, rotateSpeed * (xTouch/2));
+            }*/
         }
 #endif
     }
