@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2450,6 +2450,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1258135139556350, guid: cfe5dc23a94f38a41b94fc3916223214, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cfe5dc23a94f38a41b94fc3916223214, type: 2}
   m_IsPrefabParent: 0
@@ -2655,6 +2659,10 @@ Prefab:
     - target: {fileID: 4637842150678810, guid: 56f007f824bda9d458b815f38a06232e, type: 2}
       propertyPath: m_RootOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988125970697334, guid: 56f007f824bda9d458b815f38a06232e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 56f007f824bda9d458b815f38a06232e, type: 2}
@@ -2884,9 +2892,56 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 1989587820690880, guid: 9f72c3abc9ada834992aa5cb529f40a1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f72c3abc9ada834992aa5cb529f40a1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &889536283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 889536285}
+  - component: {fileID: 889536284}
+  m_Layer: 0
+  m_Name: SeedSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &889536284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 889536283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3fd6fe37cf6e2438b65f081f314338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seed: {fileID: 1989587820690880, guid: 9f72c3abc9ada834992aa5cb529f40a1, type: 2}
+  maxTime: 5
+  minTime: 2
+--- !u!4 &889536285
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 889536283}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &928826929
 GameObject:
   m_ObjectHideFlags: 0
@@ -3009,6 +3064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rotateSpeed: 1
+  rotSpeed: 250
+  damping: 10
 --- !u!61 &930540974
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3255,6 +3312,10 @@ Prefab:
     - target: {fileID: 4372486348149384, guid: 21e3f15966e586d4ca2950fce7e9d5bc, type: 2}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1143899840831862, guid: 21e3f15966e586d4ca2950fce7e9d5bc, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 21e3f15966e586d4ca2950fce7e9d5bc, type: 2}
@@ -3524,6 +3585,10 @@ Prefab:
     - target: {fileID: 4346613526050964, guid: fca595ccf9fe49648acd11ac95fa51ce, type: 2}
       propertyPath: m_RootOrder
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892612663776312, guid: fca595ccf9fe49648acd11ac95fa51ce, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fca595ccf9fe49648acd11ac95fa51ce, type: 2}
