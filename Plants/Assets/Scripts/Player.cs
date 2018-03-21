@@ -20,7 +20,7 @@ public class Player : MonoBehaviour {
 
     //touch stuff
     private Vector2 touchOrigin;
-    private bool touched;
+    private Vector2 touchOld;
 
     private float desiredRot;
 
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 		restrictRotation = false;
 
         touchOrigin = -Vector2.one;
-        touched = false;
+        touchOld = -Vector2.one;
 
         desiredRot = transform.eulerAngles.y;
     }
@@ -85,26 +85,11 @@ public class Player : MonoBehaviour {
         if(Input.touchCount > 0)
         {
             Touch tch = Input.touches[0];
-            /*if(tch.phase == TouchPhase.Began)
-            {
-                touchOrigin = tch.position;
-                if(touchOrigin.x >= Screen.width/2)
-                {
-                    desiredRot -= rotSpeed * Time.deltaTime;
-                }
-                else
-                {
-                    desiredRot += rotSpeed * Time.deltaTime;
-                }
-            }
-
-            Quaternion desiredRotQ = Quaternion.Euler(transform.eulerAngles.x, desiredRot, transform.eulerAngles.z);
-            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotQ, Time.deltaTime * damping);*/
 
             if(tch.phase == TouchPhase.Moved)
             {
                 touchOrigin = tch.position;
-                if (touchOrigin.x >= Screen.width / 2)
+                if (touchOrigin.x >= touchOld.x)
                 {
                     transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
                 }
@@ -112,6 +97,8 @@ public class Player : MonoBehaviour {
                 {
                     transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
                 }
+                touchOld = touchOrigin;
+
             }
 
             /*else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
