@@ -85,29 +85,23 @@ public class Player : MonoBehaviour {
 	        {
 	            Touch tch = Input.touches[0];
 
-	            if(tch.phase == TouchPhase.Moved)
+                if(tch.phase == TouchPhase.Began)
+                {
+                    touchOrigin = tch.position;
+                    touchOld = tch.position;
+                } else if(tch.phase == TouchPhase.Moved)
 	            {
 	                touchOrigin = tch.position;
 	                if (touchOrigin.x >= touchOld.x)
 	                {
-	                    transform.Rotate(Vector3.back, ((touchOrigin.x - touchOld.x) / 3) * rotateSpeed * Time.deltaTime);
+	                    transform.Rotate(Vector3.back, ((touchOrigin.x - touchOld.x) / 10) * rotateSpeed * Time.deltaTime);
 	                }
 	                else
 	                {
-	                    transform.Rotate(Vector3.back, ((touchOld.x - touchOrigin.x) / 3) * -rotateSpeed * Time.deltaTime);
+	                    transform.Rotate(Vector3.back, ((touchOld.x - touchOrigin.x) / 10) * -rotateSpeed * Time.deltaTime);
 	                }
 	                touchOld = touchOrigin;
-
-	            }
-
-	            /*else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-	            {
-	                Vector2 touchEnd = tch.position;
-	                float xTouch = touchEnd.x - touchOrigin.x;
-	                touchOrigin.x = -1;
-
-	                transform.Rotate(Vector3.back, rotateSpeed * (xTouch/2));
-	            }*/
+                }
 	        }
 		#endif
     }
