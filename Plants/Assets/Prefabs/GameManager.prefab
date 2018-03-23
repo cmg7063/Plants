@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1749311994394452}
+  m_IsPrefabParent: 1
+--- !u!1 &1749311994394452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4810253733749676}
+  - component: {fileID: 114886297386022232}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4810253733749676
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749311994394452}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114886297386022232
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1749311994394452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4660a7fbb75d1400cad81939b30585cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seedsPrefabs:
+  - {fileID: 1892612663776312, guid: fca595ccf9fe49648acd11ac95fa51ce, type: 2}
+  - {fileID: 1988125970697334, guid: 56f007f824bda9d458b815f38a06232e, type: 2}
+  - {fileID: 1143899840831862, guid: 21e3f15966e586d4ca2950fce7e9d5bc, type: 2}
+  - {fileID: 1258135139556350, guid: cfe5dc23a94f38a41b94fc3916223214, type: 2}
+  - {fileID: 1989587820690880, guid: 9f72c3abc9ada834992aa5cb529f40a1, type: 2}
+  tiltedEarthPrefab: {fileID: 1114421725955030, guid: 5c6a57be3ce8e48f1b40a12c86d8bbde,
+    type: 2}
+  mapMinPoint: {x: -12, y: -16, z: 0}
+  mapMaxPoint: {x: 12, y: 18, z: 0}
+  offset: 0.5

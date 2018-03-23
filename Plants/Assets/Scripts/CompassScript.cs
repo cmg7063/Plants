@@ -22,11 +22,9 @@ public class CompassScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		transform.position = player.position + offset;
-		Debug.Log ("update");
 
 		// prevent constantly update array and target
 		if ((frameCounter % 5) == 0) {
-			Debug.Log ("5th frame");
 			// update seeds array
 			seeds = GameObject.FindGameObjectsWithTag ("Seed");
 

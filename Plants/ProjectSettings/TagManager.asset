@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Seed
-  - Pot
   - ShowOnClick
+  - Wall
+  - TiltedEarth
   layers:
   - Default
   - TransparentFX

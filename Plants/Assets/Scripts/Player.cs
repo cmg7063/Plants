@@ -68,49 +68,48 @@ public class Player : MonoBehaviour {
 
 	// checks for user input
 	private void userInput() {
+		#if (UNITY_STANDALONE || WEBPLAYER || UNITY_EDITOR_WIN || UNITY_EDITOR_OSX)
+			// rotate player counter clockwise
+			if (!restrictRotation) {
+				if (Input.GetKey (KeyCode.LeftArrow)) {
+					transform.Rotate (Vector3.back, -rotateSpeed * Time.deltaTime);
+				}
 
-#if UNITY_STANDALONE || WEBPLAYER
-		// rotate player counter clockwise
-		if (!restrictRotation) {
-			if (Input.GetKey (KeyCode.LeftArrow)) {
-				transform.Rotate (Vector3.back, -rotateSpeed * Time.deltaTime);
+				// rotate player clockwise
+				if (Input.GetKey (KeyCode.RightArrow)) {
+					transform.Rotate (Vector3.back, rotateSpeed * Time.deltaTime);
+				}
 			}
+		#else
+	        if(Input.touchCount > 0)
+	        {
+	            Touch tch = Input.touches[0];
 
-			// rotate player clockwise
-			if (Input.GetKey (KeyCode.RightArrow)) {
-				transform.Rotate (Vector3.back, rotateSpeed * Time.deltaTime);
-			}
-		}
-#else
-        if(Input.touchCount > 0)
-        {
-            Touch tch = Input.touches[0];
+	            if(tch.phase == TouchPhase.Moved)
+	            {
+	                touchOrigin = tch.position;
+	                if (touchOrigin.x >= touchOld.x)
+	                {
+	                    transform.Rotate(Vector3.back, ((touchOrigin.x - touchOld.x) / 3) * rotateSpeed * Time.deltaTime);
+	                }
+	                else
+	                {
+	                    transform.Rotate(Vector3.back, ((touchOld.x - touchOrigin.x) / 3) * -rotateSpeed * Time.deltaTime);
+	                }
+	                touchOld = touchOrigin;
 
-            if(tch.phase == TouchPhase.Moved)
-            {
-                touchOrigin = tch.position;
-                if (touchOrigin.x >= touchOld.x)
-                {
-                    transform.Rotate(Vector3.back, ((touchOrigin.x - touchOld.x) / 3) * rotateSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    transform.Rotate(Vector3.back, ((touchOld.x - touchOrigin.x) / 3) * -rotateSpeed * Time.deltaTime);
-                }
-                touchOld = touchOrigin;
+	            }
 
-            }
+	            /*else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
+	            {
+	                Vector2 touchEnd = tch.position;
+	                float xTouch = touchEnd.x - touchOrigin.x;
+	                touchOrigin.x = -1;
 
-            /*else if (tch.phase == TouchPhase.Ended && touchOrigin.x >= 0)
-            {
-                Vector2 touchEnd = tch.position;
-                float xTouch = touchEnd.x - touchOrigin.x;
-                touchOrigin.x = -1;
-
-                transform.Rotate(Vector3.back, rotateSpeed * (xTouch/2));
-            }*/
-        }
-#endif
+	                transform.Rotate(Vector3.back, rotateSpeed * (xTouch/2));
+	            }*/
+	        }
+		#endif
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
