@@ -91,11 +91,11 @@ public class Player : MonoBehaviour {
                 touchOrigin = tch.position;
                 if (touchOrigin.x >= touchOld.x)
                 {
-                    transform.Rotate(Vector3.back, rotateSpeed * Time.deltaTime);
+                    transform.Rotate(Vector3.back, ((touchOrigin.x - touchOld.x) / 3) * rotateSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    transform.Rotate(Vector3.back, -rotateSpeed * Time.deltaTime);
+                    transform.Rotate(Vector3.back, ((touchOld.x - touchOrigin.x) / 3) * -rotateSpeed * Time.deltaTime);
                 }
                 touchOld = touchOrigin;
 
