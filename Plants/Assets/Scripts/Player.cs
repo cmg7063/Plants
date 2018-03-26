@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
     public float damping = 10;
 
 	// Use this for initialization
+
 	void Start () {
 		rigidBody = GetComponent<Rigidbody2D>();
 
@@ -87,9 +88,14 @@ public class Player : MonoBehaviour {
 
                 if(tch.phase == TouchPhase.Began)
                 {
+                    if(tch.position == null)
+                    {
+                        return;
+                    }
                     touchOrigin = tch.position;
                     touchOld = tch.position;
-                } else if(tch.phase == TouchPhase.Moved)
+                }
+                else if(tch.phase == TouchPhase.Moved)
 	            {
 	                touchOrigin = tch.position;
 	                if (touchOrigin.x >= touchOld.x)

@@ -21,13 +21,13 @@ public class GameManagerScript : MonoBehaviour {
 	void Start () {
 		setUpArrays();
 		// spawn two seeds and two tilted earth tiles at start
-		SpawnSeed ();
-		SpawnSeed ();
 		SpawnTiltedEarth ();
 		SpawnTiltedEarth ();
 		SpawnTiltedEarth ();
 		SpawnTiltedEarth ();
-	}
+        SpawnSeed();
+        SpawnSeed();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,10 +35,28 @@ public class GameManagerScript : MonoBehaviour {
 			currentSeeds = GameObject.FindGameObjectsWithTag ("Seed");
 
 			if (currentSeeds.Length < 2) {
-				SpawnSeed ();
 				SpawnTiltedEarth ();
 				SpawnTiltedEarth ();
-			}
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnTiltedEarth();
+                SpawnSeed();
+            }
 		}
 
 		// update frameCounter
@@ -65,9 +83,11 @@ public class GameManagerScript : MonoBehaviour {
 	//Spawns seed
 	void SpawnSeed() {
 		int randomSeed = Random.Range (0, seedsPrefabs.Length);
-		Vector3 randomPos = new Vector3 (Random.Range(mapMinPoint.x + offset, mapMaxPoint.x - offset), Random.Range(mapMinPoint.y + offset, mapMaxPoint.y - offset), -2);
 
-		Instantiate(seedsPrefabs[randomSeed], randomPos, seedsPrefabs[randomSeed].transform.rotation);
+        int index = Random.Range(0, tiltedLocations.Count);
+        Vector3 location = tiltedLocations[index];
+
+        Instantiate(seedsPrefabs[randomSeed], location, seedsPrefabs[randomSeed].transform.rotation);
 	}
 
 	//Spawns tilted earth tile
