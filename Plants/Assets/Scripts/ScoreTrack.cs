@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreTrack : MonoBehaviour {
+public class ScoreTrack : MonoBehaviour
+{
 
     public static int scoreNum;
-    Text score;
+    public Text score;
+    public Text seeds;
 
-	// Use this for initialization
-	void Start () {
+    public int Score
+    {
+        get { return scoreNum; }
+        set { scoreNum = value; }
+    }
+
+    // Use this for initialization
+    void Start ()
+    {
         scoreNum = 0;
-        score = GetComponent<Text>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        score.text = "Score: " + score;
+    }
+
+    // Update is called once per frame
+    void Update ()
+    {
 		score.text = "Score: " + scoreNum;
 	}
+
 }
