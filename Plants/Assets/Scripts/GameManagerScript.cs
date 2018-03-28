@@ -35,27 +35,10 @@ public class GameManagerScript : MonoBehaviour {
 			currentSeeds = GameObject.FindGameObjectsWithTag ("Seed");
 
 			if (currentSeeds.Length < 2) {
-				SpawnTiltedEarth ();
-				SpawnTiltedEarth ();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
-                SpawnTiltedEarth();
                 SpawnTiltedEarth();
                 SpawnTiltedEarth();
                 SpawnSeed();
+                ScoreTrack.scoreNum += 10;
             }
 		}
 

@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 	// move players if they are not stunned
 	private void updateMovement() {
         if (currentStun < 0.0f) {
-			transform.Translate (0, speed * Time.deltaTime, 0);
+			transform.Translate (0, (speed + ScoreTrack.scoreNum/100) * Time.deltaTime, 0);
 		} else {
 			// push back player during the beginning of the stun
 			if (currentStun > 1.0f) {
