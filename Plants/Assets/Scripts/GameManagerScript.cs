@@ -70,6 +70,9 @@ public class GameManagerScript : MonoBehaviour {
         int index = Random.Range(0, tiltedLocations.Count);
         Vector3 location = tiltedLocations[index];
 
+		// add offsets
+		location.z -= 1.0f;
+
         Instantiate(seedsPrefabs[randomSeed], location, seedsPrefabs[randomSeed].transform.rotation);
 	}
 
