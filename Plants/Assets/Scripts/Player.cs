@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 	// move players if they are not stunned
 	private void updateMovement() {
         if (currentStun < 0.0f) {
-			transform.Translate (0, (speed + ScoreTrack.scoreNum/100) * Time.deltaTime, 0);
+			transform.Translate (0, (speed + ScoreTrack.scoreNum/250) * Time.deltaTime, 0);
 		} else {
 			// push back player during the beginning of the stun
 			if (currentStun > 1.0f) {
@@ -126,8 +126,17 @@ public class Player : MonoBehaviour {
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
-		if (collision.gameObject.tag == "Pot" && seedCount > 0) {
-            collision.gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-        }
+		if (collision.gameObject.tag == "TiltedEarth" && seedCount > 0) {
+			TiltedGroundScript script = collision.GetComponent<TiltedGroundScript> ();
+
+			// only plant in unplanted tilted earth
+			if (script.GetIsPlanted() == false) {
+				collision.GetComponent<TiltedGroundScript> ().PlantSeed ();
+				ScoreTrack.scoreNum += 20;
+				seedCount--;
+			}
+		} else if (collision.gameObject.tag == "Flower") {
+			Debug.Log ("Trigger Entered Flower");
+		}
     }
 }
