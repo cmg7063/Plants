@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ScoreTrack : MonoBehaviour
 {
     // This is for the lives Health Bar UI
-    //public SpriteRenderer lifeSprite;
-    //public Sprite[] sprout;
+    public SpriteRenderer lifeSprite;
+    public Sprite[] sprout;
 
     public static int scoreNum;
     public static int seedNum;
@@ -27,8 +27,8 @@ public class ScoreTrack : MonoBehaviour
     {
         scoreNum = 0;
         seedNum = 0;
-        healthText.text = "Lives: " + Player.health;
-        //lifeSprite.sprite = sprout[0];
+        healthText.text = "Lives: ";
+        lifeSprite.sprite = sprout[0];
 
         seeds.text = "Seeds: " + seedNum;
         score.text = "Score: " + score;
@@ -37,7 +37,6 @@ public class ScoreTrack : MonoBehaviour
     // Update is called once per frame
     void Update ()
     {
-        /*
         healthText.text = "Lives:";
         if(Player.health == 2)
         {
@@ -51,8 +50,7 @@ public class ScoreTrack : MonoBehaviour
         {
             lifeSprite.sprite = null;
         }
-        */
-        healthText.text = "Lives: " + Player.health;
+        healthText.text = "Lives: ";
         seeds.text = "Seeds: " + seedNum;
         score.text = "Score: " + scoreNum;
 	}
