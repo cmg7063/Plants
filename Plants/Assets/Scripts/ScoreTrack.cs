@@ -7,6 +7,7 @@ public class ScoreTrack : MonoBehaviour
 {
 
     public static int scoreNum;
+    public static int seedNum;
     public Text score;
     public Text seeds;
 
@@ -20,13 +21,14 @@ public class ScoreTrack : MonoBehaviour
     void Start ()
     {
         scoreNum = 0;
-        score.text = "Score: " + score;
+        seedNum = 0;
+        score.text = "Seeds: " + seedNum + "\nScore: " + score;
     }
 
     // Update is called once per frame
     void Update ()
     {
-		score.text = "Score: " + scoreNum;
+		score.text = "Seeds: " + seedNum + "\nScore: " + scoreNum;
 	}
 
 }

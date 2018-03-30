@@ -9,6 +9,8 @@ public class Player : MonoBehaviour {
 	// movement
     public float speed;
     public float rotateSpeed;
+    public float speedTotal;
+    public float speedMax;
     
 	// collectable
     int seedCount;
@@ -42,6 +44,9 @@ public class Player : MonoBehaviour {
         touchOld = -Vector2.one;
 
         desiredRot = transform.eulerAngles.y;
+
+        speedTotal = speed;
+        speedMax = 12;
     }
 	
 	// Update is called once per frame
@@ -53,8 +58,12 @@ public class Player : MonoBehaviour {
 
 	// move players if they are not stunned
 	private void updateMovement() {
+        speedTotal = (speed + ScoreTrack.scoreNum / 250);
+        if(speedTotal > speedMax) {
+            speedTotal = speedMax;
+        }
         if (currentStun < 0.0f) {
-			transform.Translate (0, (speed + ScoreTrack.scoreNum/250) * Time.deltaTime, 0);
+			transform.Translate (0, speedTotal * Time.deltaTime, 0);
 		} else {
 			// push back player during the beginning of the stun
 			if (currentStun > 1.0f) {
@@ -117,6 +126,7 @@ public class Player : MonoBehaviour {
 		if (collision.gameObject.tag == "Seed") {
 			Destroy(collision.gameObject);
 			seedCount++;
+            ScoreTrack.seedNum = seedCount;
 		}
 
 		if (collision.gameObject.tag == "Wall") {
@@ -134,7 +144,8 @@ public class Player : MonoBehaviour {
 				collision.GetComponent<TiltedGroundScript> ().PlantSeed ();
 				ScoreTrack.scoreNum += 20;
 				seedCount--;
-			}
+                ScoreTrack.seedNum = seedCount;
+            }
 		} else if (collision.gameObject.tag == "Flower") {
 			Debug.Log ("Trigger Entered Flower");
 		}
