@@ -6,7 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 	// player
 	Rigidbody2D rigidBody;
-	private int health = 3;
+	public static int health = 3;
 
 	// movement
     public float speed;
@@ -31,9 +31,9 @@ public class Player : MonoBehaviour {
     public float rotSpeed = 250;
     public float damping = 10;
 
-	// Use this for initialization
+    // Use this for initialization
 
-	void Start () {
+    void Start () {
 		rigidBody = GetComponent<Rigidbody2D>();
 
 		seedCount = 0;
