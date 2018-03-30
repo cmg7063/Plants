@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4239297012060046}
   - component: {fileID: 212855598506134230}
   - component: {fileID: 61922596133867088}
+  - component: {fileID: 114499455342428390}
   m_Layer: 0
   m_Name: purple flower
   m_TagString: Flower
@@ -66,6 +67,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5}
   m_EdgeRadius: 0
+--- !u!114 &114499455342428390
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901175196995644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86da8f87ba5414041a7a4405bc87be76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212855598506134230
 SpriteRenderer:
   m_ObjectHideFlags: 1

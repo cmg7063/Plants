@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
 	// player
 	Rigidbody2D rigidBody;
+	private int health = 3;
 
 	// movement
     public float speed;
@@ -136,7 +138,33 @@ public class Player : MonoBehaviour {
 				seedCount--;
 			}
 		} else if (collision.gameObject.tag == "Flower") {
-			Debug.Log ("Trigger Entered Flower");
+			FlowerScript script = collision.GetComponent<FlowerScript> ();
+
+			// flower can only hurt the player once
+			if (script.getHurtPlayer () == false) {
+				script.toggleHurtPlayer ();
+
+				Color semiTransparent = collision.GetComponent<SpriteRenderer> ().color;
+				semiTransparent.a = 0.5f;
+				collision.GetComponent<SpriteRenderer> ().color = semiTransparent;
+
+				health--;
+
+				// if player runs out of health reset seen
+				if (health <= 0) {
+					RespawnPlayer ();
+				}
+			}
 		}
     }
+
+	// respawn the player at starting point
+	private void RespawnPlayer() {
+		// reset score
+		ScoreTrack.scoreNum = 0;
+
+		// get the current scene and reload the scene
+		Scene scene = SceneManager.GetActiveScene();
+		SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
+	}
 }
