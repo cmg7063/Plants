@@ -288,6 +288,11 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224116788242606496, guid: 55702fec8fa2de541a7a5993a358870e,
     type: 2}
   m_PrefabInternal: {fileID: 2120999310}
+--- !u!1 &1089313580 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1417434734568682, guid: 55702fec8fa2de541a7a5993a358870e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2120999310}
 --- !u!1001 &1468124848
 Prefab:
   m_ObjectHideFlags: 0
@@ -513,6 +518,17 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114673196690461798, guid: 949e1a5044b574ce693408086aba4414,
+        type: 2}
+      propertyPath: particle
+      value: 
+      objectReference: {fileID: 198492924915658294, guid: 4a27d1225b4a145ac997f30377c2fe5c,
+        type: 2}
+    - target: {fileID: 114673196690461798, guid: 949e1a5044b574ce693408086aba4414,
+        type: 2}
+      propertyPath: avatarHud
+      value: 
+      objectReference: {fileID: 1089313580}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 949e1a5044b574ce693408086aba4414, type: 2}
   m_IsPrefabParent: 0
