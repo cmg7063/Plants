@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public ParticleSystem particle;
+
 	// player
 	Rigidbody2D rigidBody;
 	public static int health = 3;
@@ -147,6 +149,13 @@ public class Player : MonoBehaviour {
 				ScoreTrack.scoreNum += 20;
 				seedCount--;
                 ScoreTrack.seedNum = seedCount;
+
+				// play particle effect
+				ParticleSystem clone = particle;
+				Vector3 location = collision.transform.position;
+				location.z = -4f;
+
+				Instantiate(clone, location, collision.transform.rotation);
             }
 		} else if (collision.gameObject.tag == "Flower") {
 			FlowerScript script = collision.GetComponent<FlowerScript> ();
