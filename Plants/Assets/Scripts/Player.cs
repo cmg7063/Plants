@@ -181,10 +181,12 @@ public class Player : MonoBehaviour {
 	// respawn the player at starting point
 	private void RespawnPlayer() {
 		// reset score
-		ScoreTrack.scoreNum = 0;
+		//ScoreTrack.scoreNum = 0;
 
-		// get the current scene and reload the scene
-		Scene scene = SceneManager.GetActiveScene();
-		SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
-	}
+        SceneManager.LoadScene("GameOver");
+
+        // get the current scene and reload the scene
+        //Scene scene = SceneManager.GetActiveScene();
+        //SceneManager.LoadScene(scene.name, LoadSceneMode.Single);
+    }
 }
