@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 	public ParticleSystem particle;
+	public GameObject avatarHud;
+
+	// animator
+	private Animator avatarAnimator;
+	private float stunned;
+	private float planted;
 
 	// player
 	Rigidbody2D rigidBody;
@@ -36,6 +42,7 @@ public class Player : MonoBehaviour {
     // Use this for initialization
 
     void Start () {
+		avatarAnimator = avatarHud.GetComponent<Animator> ();
 		rigidBody = GetComponent<Rigidbody2D>();
 
 		seedCount = 0;
@@ -56,7 +63,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		updateMovement ();
-
+		updateAnimator ();
 		userInput ();
     }
 
@@ -77,6 +84,19 @@ public class Player : MonoBehaviour {
 			}
 
 			currentStun -= Time.deltaTime;
+		}
+	}
+
+	private void updateAnimator() {
+		stunned = avatarAnimator.GetFloat ("stunned");
+		planted = avatarAnimator.GetFloat ("planted");
+
+		if (stunned > 0) {
+			avatarAnimator.SetFloat("stunned", stunned - Time.deltaTime);
+		}
+
+		if (planted > 0) {
+			avatarAnimator.SetFloat("planted", planted - Time.deltaTime);
 		}
 	}
 
@@ -134,6 +154,7 @@ public class Player : MonoBehaviour {
 		}
 
 		if (collision.gameObject.tag == "Wall") {
+			avatarAnimator.SetFloat("stunned", 1.75f);
 			currentStun = stunTime;
 			restrictRotation = true;
 		}
@@ -156,6 +177,9 @@ public class Player : MonoBehaviour {
 				location.z = -4f;
 
 				Instantiate(clone, location, collision.transform.rotation);
+
+				avatarAnimator.SetFloat("planted", 3.0f);
+				avatarAnimator.SetTrigger ("avatar_happy");
             }
 		} else if (collision.gameObject.tag == "Flower") {
 			FlowerScript script = collision.GetComponent<FlowerScript> ();
@@ -169,6 +193,8 @@ public class Player : MonoBehaviour {
 				collision.GetComponent<SpriteRenderer> ().color = semiTransparent;
 
 				health--;
+
+				avatarAnimator.SetFloat("stunned", 3.0f);
 
 				// if player runs out of health reset seen
 				if (health <= 0) {
